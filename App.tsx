@@ -1,20 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { FC } from "react";
+import { SafeAreaView } from "react-native";
+import { useFonts } from "expo-font";
+import { Provider } from "react-redux";
+import { store } from "./src/app/store";
+import {
+  Rubik_300Light_Italic,
+  Rubik_400Regular,
+  Rubik_500Medium,
+  Rubik_700Bold,
+} from "@expo-google-fonts/rubik";
+import Screens from "./src/navigation";
+import AppLoading from "expo-app-loading";
 
-export default function App() {
+const App: FC = () => {
+  let [fontsLoaded] = useFonts({
+    Rubik_300Light_Italic,
+    Rubik_400Regular,
+    Rubik_500Medium,
+    Rubik_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Screens />
+      </SafeAreaView>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
