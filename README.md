@@ -10,3 +10,5 @@ Technologies used:
  - Redux Toolkit
  - TypeScript
 
+Open the camera app on your device and scan the code below
+![expo-go](https://user-images.githubusercontent.com/72225256/157485768-2c75375d-dd8d-4fb3-bab3-f4a042371d07.svg)
