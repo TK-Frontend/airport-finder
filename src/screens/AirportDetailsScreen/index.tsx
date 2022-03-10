@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Linking, Text, TouchableOpacity, View } from "react-native";
 import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import openMap from "react-native-open-maps";
@@ -94,7 +94,14 @@ const AirportDetailsScreen: FC<IProps> = ({ navigation, route }) => {
                 styles.RubikRegular,
               ]}
             >
-              {airport.url}
+              <Text
+                style={{ paddingVertical: 20 }}
+                onPress={() => {
+                  Linking.openURL(airport.url);
+                }}
+              >
+                {airport.url}
+              </Text>
             </Text>
           </View>
         ) : null}
@@ -110,6 +117,9 @@ const AirportDetailsScreen: FC<IProps> = ({ navigation, route }) => {
             >
               Phone:{" "}
               <Text
+                onPress={() => {
+                  Linking.openURL(`tel:${airport.phone}`);
+                }}
                 style={[
                   styles.colorSecondary,
                   styles.fontSizeMedium,
@@ -142,7 +152,7 @@ const AirportDetailsScreen: FC<IProps> = ({ navigation, route }) => {
                 {airport.runway_length}
               </Text>
             ) : (
-              "no data"
+              <Text style={styles.RubikItalic}>no data</Text>
             )}
           </Text>
         </View>
