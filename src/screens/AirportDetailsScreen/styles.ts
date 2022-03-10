@@ -76,20 +76,23 @@ const createStyles = () =>
     },
     row: {
       backgroundColor: Colors.ANTHRACITE,
-      height: RFValue(48),
       justifyContent: "center",
       marginTop: RFValue(4),
-      paddingLeft: RFValue(4),
+      paddingHorizontal: RFValue(8),
+      paddingVertical: RFValue(12),
     },
     RubikBold: {
       fontFamily: "Rubik_700Bold",
       textAlign: "center",
     },
-    RubikRegular: {
-      fontFamily: "Rubik_400Regular",
+    RubikItalic: {
+      fontFamily: "Rubik_300Light_Italic",
     },
     RubikMedium: {
       fontFamily: "Rubik_500Medium",
+    },
+    RubikRegular: {
+      fontFamily: "Rubik_400Regular",
     },
   });
 
