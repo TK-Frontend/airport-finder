@@ -12,11 +12,11 @@ import { LOGO } from "../../assets/Images";
 import Spinner from "../../components/spinner";
 import createStyles from "./styles";
 
-interface IProps {
+interface Props {
   navigation: NavigationProp<ParamListBase>;
 }
 
-const WelcomeScreen: FC<IProps> = ({ navigation }) => {
+const WelcomeScreen: FC<Props> = ({ navigation }) => {
   const styles = useMemo(() => createStyles(), []);
   const { data, error, isLoading, isSuccess } = useAirportsQuery();
 

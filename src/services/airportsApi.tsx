@@ -9,7 +9,7 @@ export const airportsApi = createApi({
   }),
   endpoints: (builder) => ({
     airports: builder.query<Airport[], void>({
-      query: () => "/airports.json",
+      query: () => "/airports.json", // How to avoid tping ".json" ?
     }),
   }),
 });

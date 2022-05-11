@@ -2,16 +2,19 @@ import React, { FC, useMemo } from "react";
 import { Linking, Text, TouchableOpacity, View } from "react-native";
 import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { getEmojiFlag } from "countries-list";
 import openMap from "react-native-open-maps";
 import createStyles from "./styles";
-import { getEmojiFlag } from "countries-list";
 
-interface IProps {
+import type { RouteProp } from "@react-navigation/native";
+
+interface Props {
   navigation: NavigationProp<ParamListBase>;
   route: any;
+  // route: RouteProp<Props>; // What type should it be?
 }
 
-const AirportDetailsScreen: FC<IProps> = ({ navigation, route }) => {
+const AirportDetailsScreen: FC<Props> = ({ navigation, route }: Props) => {
   const { airport } = route.params;
   const styles = useMemo(() => createStyles(), []);
   const lookup = require("country-code-lookup");
