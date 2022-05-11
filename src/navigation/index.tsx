@@ -3,35 +3,38 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AirportDetailsScreen, MapScreen, WelcomeScreen } from "../screens";
 import { Airport } from "../models/airport.model";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export type MainStackParamList = {
-  AirportDetailsScreen: {
-    airport: Airport;
-  };
+export type RootStackParamList = {
+  AirportDetailsScreen: Airport;
   MapScreen: undefined;
   WelcomeScreen: undefined;
 };
 
-const MainStack = createNativeStackNavigator<MainStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Screens: FC = () => {
   return (
     <NavigationContainer>
-      <MainStack.Navigator
+      <RootStack.Navigator
         initialRouteName="WelcomeScreen"
         screenOptions={{
           headerShown: false,
         }}
       >
-        <MainStack.Screen
+        <RootStack.Screen
           name="AirportDetailsScreen"
           component={AirportDetailsScreen}
         />
-        <MainStack.Screen name="MapScreen" component={MapScreen} />
-        <MainStack.Screen name="WelcomeScreen" component={WelcomeScreen} />
-      </MainStack.Navigator>
+        <RootStack.Screen name="MapScreen" component={MapScreen} />
+        <RootStack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
 
+export type Props = NativeStackScreenProps<
+  RootStackParamList,
+  "AirportDetailsScreen"
+>;
 export default Screens;
