@@ -1,19 +1,18 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
-import MapView, { Marker } from "react-native-maps";
+import MapView from "react-native-map-clustering";
+import { Marker } from "react-native-maps";
 import { NavigationProp, ParamListBase } from "@react-navigation/native";
 import createStyles from "./styles";
 import { useAirportsQuery } from "../../services/airportsApi";
 import * as Location from "expo-location";
-import { Airport } from "../../models/airport.model";
 
-interface IProps {
+interface Props {
   navigation: NavigationProp<ParamListBase>;
-  airport: Airport;
 }
 
-const MapScreen: FC<IProps> = ({ navigation }) => {
+const MapScreen: FC<Props> = ({ navigation }) => {
   const styles = useMemo(() => createStyles(), []);
-  const { data } = useAirportsQuery();
+  const { data } = useAirportsQuery(); // How to use this data without using useQuery? // It's already in our store, isn't it?
 
   const [location, setLocation] = useState<null | Object>(null);
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -33,6 +32,8 @@ const MapScreen: FC<IProps> = ({ navigation }) => {
 
   return (
     <MapView
+      clusterColor="#de4032"
+      radius={36}
       style={styles.container}
       initialRegion={{
         latitude: 51.09877,
@@ -52,7 +53,8 @@ const MapScreen: FC<IProps> = ({ navigation }) => {
           description={airport.code}
           onPress={() =>
             navigation.navigate("AirportDetailsScreen", {
-              airport,
+              airport, // How to pass airport.id instead whole object. And how to pass it from store.
+              // https://reactnavigation.org/docs/params#what-should-be-in-params
             })
           }
         />
